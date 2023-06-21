@@ -21,9 +21,11 @@ namespace ByteBank
 
         public void showAccInfo()
         {
+            Console.Clear();
             Console.WriteLine($"Número da conta: {this.AccNumber}");
-            Console.WriteLine($"Proprietário da conta: {this.AccOwner.Name}");
-            Console.WriteLine($"Saldo da conta: {this.AccBalance}");
+            Console.WriteLine($"Proprietário da conta: {this.AccOwner.FullName}");
+            Console.WriteLine($"Saldo da conta: R${this.AccBalance}");
+            Console.ReadLine();
         }
         public bool WithdrawFunds(double value)
         {
@@ -35,6 +37,7 @@ namespace ByteBank
             else
             {
                 AccBalance -= value;
+                Console.WriteLine("Você realizou o saque com sucesso!");
                 return true;
             }
         }
@@ -53,7 +56,7 @@ namespace ByteBank
             }
             else
             {
-                Console.WriteLine($"Sucesso! {this.AccOwner.Name} enviou R${value} reais para {targetAccount.AccOwner.Name}");
+                Console.WriteLine($"Sucesso! {this.AccOwner.Name} enviou R${value} para {targetAccount.AccOwner.Name}");
                 AccBalance -= value;
                 targetAccount.AddFunds(value);
                 return true;
