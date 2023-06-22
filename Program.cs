@@ -38,7 +38,7 @@ static void Main(string[] args)
             case "2":
                 Console.Clear();
                 Console.WriteLine("Deseja acessar as informações de que conta?");
-                accountManager.ShowAccounts(false);
+                accountManager.ShowAccounts();
                 break;
             case "3":
                 Console.Clear();

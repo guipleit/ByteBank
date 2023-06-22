@@ -27,7 +27,7 @@ namespace ByteBank
                 name = Console.ReadLine();
             }
 
-            Console.WriteLine("Qual o seu sobrenome");
+            Console.WriteLine("Qual o seu sobrenome?");
             string surname = Console.ReadLine();
             while (string.IsNullOrEmpty(name) || !name.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)) || name.Length < 3)
             {
@@ -44,12 +44,12 @@ namespace ByteBank
                 cpf = Console.ReadLine();
             }
 
-            Console.WriteLine("Qual o seu emprego");
+            Console.WriteLine("Qual o seu emprego?");
             string emprego = Console.ReadLine();
-            while (string.IsNullOrEmpty(name) || !name.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)) || name.Length < 3)
+            while (string.IsNullOrEmpty(emprego) || !emprego.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)) || emprego.Length < 3)
             {
                 Console.WriteLine("Emprego inválido. Deve ter pelo menos 3 caracteres e conter apenas letras. Por favor, tente novamente:");
-                name = Console.ReadLine();
+                emprego = Console.ReadLine();
             }
 
             Client newClient = new Client(name, surname, cpf, emprego);

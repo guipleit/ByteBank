@@ -18,7 +18,7 @@ namespace ByteBank
         }
         public string Name { get; set; }
         public string Surname { get; set; }
-        public string FullName { get; set; }
+        public string FullName { get; }
         public string Cpf { get; set; }
         public string Job { get; set; }
     }
