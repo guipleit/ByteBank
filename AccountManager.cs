@@ -100,6 +100,66 @@ namespace ByteBank
             }
         }
 
+        public void HandleTransfer()
+        {
+            Console.WriteLine("Digite o número correspondente à conta origem:");
+            int indexOrigin = 1;
+            foreach (BankAccount bankAccount in _BankAccounts)
+            {
+                Console.WriteLine($"{indexOrigin}. Número da conta: {bankAccount.AccNumber}, {bankAccount.AccOwner.FullName} Saldo disponível: R${bankAccount.AccBalance}");
+                indexOrigin++;
+            }
+            
+            string inputOrigin = Console.ReadLine();
+
+            int chosenIndexOrigin;
+            bool isNumberOrigin = Int32.TryParse(inputOrigin, out chosenIndexOrigin);
+
+            if (!isNumberOrigin || chosenIndexOrigin < 1 || chosenIndexOrigin > _BankAccounts.Count)
+            {
+                Console.WriteLine("Índice inválido. Por favor, tente novamente.");
+                return;
+            }
+
+            BankAccount originAccount = _BankAccounts[chosenIndexOrigin - 1];
+
+            Console.WriteLine("Digite o número correspondente à conta destino:");
+            int index = 1;
+            foreach (BankAccount bankAccount in _BankAccounts)
+            {
+                Console.WriteLine($"{index}. Número da conta: {bankAccount.AccNumber}, {bankAccount.AccOwner.FullName}");
+                index++;
+            }
+
+            string input = Console.ReadLine();
+
+            int chosenIndex;
+            bool isNumber = Int32.TryParse(input, out chosenIndex);
+
+            if (!isNumber || chosenIndex < 1 || chosenIndex > _BankAccounts.Count || chosenIndex == indexOrigin)
+            {
+                Console.WriteLine("Índice inválido. Por favor, tente novamente.");
+                return;
+            }
+
+            BankAccount finalAccount = _BankAccounts[chosenIndex - 1];
+            Console.Clear();
+            Console.WriteLine("Digite o valor da transferência:");
+            Console.WriteLine($"Saldo restante: R${originAccount.AccBalance}");
+            string valueInput = Console.ReadLine();
+
+            double parsedDouble;
+            bool isDouble = Double.TryParse(valueInput, out parsedDouble);
+
+            if(isDouble)
+            {
+                originAccount.TransferFunds(parsedDouble, finalAccount);
+            } else
+            {
+                Console.WriteLine("Valo inválido.");
+            }
+        }
+
     }
 
 }

@@ -32,12 +32,14 @@ namespace ByteBank
             if (AccBalance < value)
             {
                 Console.WriteLine("Não foi possível realizar o saque. Saldo insuficiente.");
+                Console.ReadLine();
                 return false;
             }
             else
             {
                 AccBalance -= value;
-                Console.WriteLine("Você realizou o saque com sucesso!");
+                Console.WriteLine($"Você realizou o saque com sucesso! Saldo restante: {this.AccBalance}");
+                Console.ReadLine();
                 return true;
             }
         }
@@ -52,6 +54,7 @@ namespace ByteBank
             if (AccBalance < value)
             {
                 Console.WriteLine("Não foi possível realizar a transferência. Saldo insuficiente.");
+                Console.ReadLine ();
                 return false;
             }
             else
@@ -59,6 +62,7 @@ namespace ByteBank
                 Console.WriteLine($"Sucesso! {this.AccOwner.Name} enviou R${value} para {targetAccount.AccOwner.Name}");
                 AccBalance -= value;
                 targetAccount.AddFunds(value);
+                Console.ReadLine();
                 return true;
             }
         }
