@@ -1,0 +1,1 @@
+﻿Projeto simples para praticar OOP. Para rodar, execute o arquivo .exe
