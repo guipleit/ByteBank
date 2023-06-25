@@ -35,7 +35,8 @@ static void Main(string[] args)
         Console.WriteLine("Pressione 2 para acessar os dados de uma conta");
         Console.WriteLine("Pressione 3 para realizar um saque");
         Console.WriteLine("Pressione 4 para realizar uma transferência");
-        Console.WriteLine("pressione 5 para sair do aplicativo");
+        Console.WriteLine("Pressione 5 para remover uma conta");
+        Console.WriteLine("pressione 6 para sair do aplicativo");
         string input = Console.ReadLine();
 
         switch (input)
@@ -58,6 +59,10 @@ static void Main(string[] args)
                 accountManager.HandleTransfer();
                 break;
             case "5":
+                Console.Clear();
+                accountManager.RemoveAccount();
+                break;
+            case "6":
                 IsRunning = false;
                 break;
         }

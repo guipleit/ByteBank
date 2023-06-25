@@ -19,13 +19,25 @@ namespace ByteBank
         public double AccBalance = 100;
         public int AccNumber;
 
-        public void showAccInfo()
+        public bool showAccInfo(string remove = "")
         {
+            if (remove == "remove")
+            {
+                Console.Clear();
+                Console.WriteLine("Tem certeza que quer remover essa conta? (y/n)");
+                Console.WriteLine($"Número da conta: {this.AccNumber}");
+                Console.WriteLine($"Proprietário da conta: {this.AccOwner.FullName}");
+                Console.WriteLine($"Saldo da conta: R${this.AccBalance}");
+                var key = Console.ReadKey();
+                return key.Key == ConsoleKey.Y;
+            }
+
             Console.Clear();
             Console.WriteLine($"Número da conta: {this.AccNumber}");
             Console.WriteLine($"Proprietário da conta: {this.AccOwner.FullName}");
             Console.WriteLine($"Saldo da conta: R${this.AccBalance}");
             Console.ReadLine();
+            return true;
         }
         public bool WithdrawFunds(double value)
         {

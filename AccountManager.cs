@@ -63,13 +63,14 @@ namespace ByteBank
 
         public void ShowAccounts(bool withdraw = false)
         {
+            Console.WriteLine("Digite o número correspondente à conta que deseja acessar:");
             int index = 1;
             foreach (BankAccount bankAccount in _BankAccounts)
             {
                 Console.WriteLine($"{index}. Número da conta: {bankAccount.AccNumber}, {bankAccount.AccOwner.FullName}");
                 index++;
             }
-            Console.WriteLine("Digite o número correspondente à conta que deseja acessar:");
+            
             string input = Console.ReadLine();
 
             int chosenIndex;
@@ -160,6 +161,41 @@ namespace ByteBank
             }
         }
 
+        public void RemoveAccount()
+        {
+            while (true)
+            {
+                Console.WriteLine("Digite o número correspondente à conta que deseja remover:");
+                int index = 1;
+                foreach (BankAccount bankAccount in _BankAccounts)
+                {
+                    Console.WriteLine($"{index}. Número da conta: {bankAccount.AccNumber}, {bankAccount.AccOwner.FullName}");
+                    index++;
+                }
+
+                string input = Console.ReadLine();
+                int chosenIndex;
+                bool isNumber = Int32.TryParse(input, out chosenIndex);
+
+                if (!isNumber || chosenIndex < 1 || chosenIndex > _BankAccounts.Count)
+                {
+                    Console.WriteLine("Índice inválido. Por favor, tente novamente.");
+                    return;
+                }
+
+                chosenIndex -= 1;
+                BankAccount chosenAccount = _BankAccounts[chosenIndex];
+
+                if (chosenAccount.showAccInfo("remove"))
+                {  
+                    _BankAccounts.RemoveAt(chosenIndex);
+                    Console.WriteLine("Conta removida com sucesso.");
+                    Console.ReadLine();
+                    break; 
+                }
+                
+            }
+        }
     }
 
 }
